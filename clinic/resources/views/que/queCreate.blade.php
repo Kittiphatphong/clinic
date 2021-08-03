@@ -31,13 +31,19 @@
                             @method('PATCH')
                             @endisset
 
+<div class="form-group">
+    <label>ຂໍ້​ມູນ​ການ​ບໍ​ລິ​ການ</label>
+    <select class="form-control select2" id="kt_select2_3" name="service_id[]" multiple="multiple" required>
+        @foreach($services as $service)
+            <option value="{{$service->id}}" >{{$service->name}}</option>
 
+        @endforeach
+    </select>
+</div>
 <div class="row">
-
-
     <div class="form-group col-6">
         <label>ເວ​ລາ​ນັດ​ໝາ​ຍ</label>
-        <input type="datetime-local" name="time_service" class="form-control" placeholder="Select date & time"  required />
+        <input type="datetime-local" name="time_service" class="form-control"   required />
     </div>
                         <div class="form-group  col-6">
                             <label>ລູກ​ຄ້າ</label>

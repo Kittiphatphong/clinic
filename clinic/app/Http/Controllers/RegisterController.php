@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Register;
+use App\Models\RegisterService;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
@@ -28,7 +30,8 @@ class RegisterController extends Controller
     {
         return view('que.queCreate')
             ->with('order_registers','order_registers')
-            ->with('clients',Client::all());
+            ->with('clients',Client::all())
+            ->with('services',Service::all());
     }
 
     /**
@@ -39,11 +42,13 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
+            'service_id' => 'required',
             'time_service' => 'required',
             'client_id' => 'required',
         ]);
-
+        $service_id = $request->service_id;
         $register = new Register();
         $register->time_service = $request->time_service;
         $register->status_id = 2;
@@ -53,6 +58,13 @@ class RegisterController extends Controller
         }
         $register->userR_id = Auth::user()->id;
         $register->save();
+
+        for($i=0;$i<count($service_id);$i++){
+         $register_service = new RegisterService();
+         $register_service->register_id = $register->id;
+         $register_service->service_id = $service_id[$i];
+         $register_service->save();
+        }
         return redirect()->route('order-register.index')
             ->with('success','ເພີ່​ມຄິວ​ສຳ​ເລັດ');
     }
@@ -97,8 +109,9 @@ class RegisterController extends Controller
      * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Register $register)
+    public function destroy($id)
     {
-        //
+       Register::find($id)->delete();
+       return back()->with('success','ລຶບ​ຂໍ້​ມູນ​ສຳ​ເລັດ');
     }
 }

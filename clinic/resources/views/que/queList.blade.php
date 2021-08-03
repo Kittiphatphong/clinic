@@ -34,6 +34,7 @@
                               <th>ລູກ​ຄ້າ</th>
                               <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
                                 <th>ຜູ້​ນັດ​ລູກ​ຄ້າ</th>
+                                <th>ການ​ບໍ​ລິ​ການ</th>
                                 <th>ຄຳ​ສັ່ງ</th>
                                 <th>ເວ​ລາຈອງ</th>
 
@@ -46,6 +47,11 @@
                                   <td>{{$item->clients->firstname}} {{$item->clients->lastname}}</td>
                                   <td>{{$item->clients->phone}}</td>
                                     <td>{{$item->userR->name}}</td>
+                                    <td>
+                                        @foreach($item->register_services as $service)
+                                            [{{$service->services->name}}]
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
                                             <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>
