@@ -35,6 +35,7 @@
                               <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
                                 <th>ຜູ້​ນັດ​ລູກ​ຄ້າ</th>
                                 <th>ການ​ບໍ​ລິ​ການ</th>
+                                <th>ສະ​ຖາ​ນະ</th>
                                 <th>ຄຳ​ສັ່ງ</th>
                                 <th>ເວ​ລາຈອງ</th>
 
@@ -52,6 +53,17 @@
                                             [{{$service->services->name}}]
                                         @endforeach
                                     </td>
+                                    <td>
+                                        <span class="badge
+                                        @if($item->status_id == 2)
+                                        badge-success
+                                        @elseif($item->status_id == 1)
+                                        badge-warning
+                                        @elseif($item->status_id == 3)
+                                            badge-danger
+                                        @endif
+                                        ">{{$item->statuses->name}}</span>
+                                        </td>
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
                                             <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>

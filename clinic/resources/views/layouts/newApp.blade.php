@@ -36,7 +36,7 @@
     <style>
         @font-face {
             font-family: 'noto';
-            src: url("/assets/NotoSansLao-Bold.ttf");
+            src: url("{{asset('assets/NotoSansLao-Bold.ttf')}}");
         }
         body {
             font-family: noto;
