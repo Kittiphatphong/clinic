@@ -68,6 +68,7 @@
                                         </td>
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
+                                            <a href="{{route('bill.edit',$item->id)}}" class="btn btn-link" ><i class="fas fa-shopping-cart"></i></a>
                                             <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>
                                             <form action="{{route('order-register.destroy',$item->id)}}" method="post" class="delete{{$item->id}}">
                                                 @csrf

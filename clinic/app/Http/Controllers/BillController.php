@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Register;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class BillController extends Controller
@@ -58,7 +60,10 @@ class BillController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('bill.billCreate')
+            ->with('order_registers','order_registers')
+            ->with('services',Service::all())
+            ->with('data_services',Register::find($id));
     }
 
     /**
