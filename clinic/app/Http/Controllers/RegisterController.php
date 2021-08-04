@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function index()
     {
         return view ('que.queList')
-            ->with('order_registers',Register::all());
+            ->with('order_registers',Register::all()->where('status_id','!=',4));
     }
 
     /**

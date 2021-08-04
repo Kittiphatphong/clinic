@@ -114,6 +114,13 @@
                     <li class="nav-header">ເມ​ນູ</li>
 
                     <li class="nav-item " >
+                        <a href="{{route('bill.index')}}" class="nav-link  @isset($list_bills) active @endisset">
+                            <i class="nav-icon fas fa-hospital-user"></i>
+                            <p>ການ​ໃຊ້​ບໍ​ລິ​ການ</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item " >
                         <a href="{{route('order-register.index')}}" class="nav-link  @isset($order_registers) active @endisset">
                             <i class="nav-icon fas fa-clock"></i>
                             <p>ຈອງ​ຄິ​ວ</p>

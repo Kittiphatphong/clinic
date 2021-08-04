@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Register extends Model
 {
@@ -31,5 +32,21 @@ class Register extends Model
 
     public function bills(){
         return $this->hasMany(Bill::class,'bill_id');
+    }
+
+    public function differentTime(){
+        $now = Carbon::now('Asia/Vientiane');
+        $time = $now->diffInSeconds($this->time_service);
+        $date = $now->diffInDays($this->time_service);
+        $formatTime = gmdate('H:i:s',$time);
+        if($date == 0)
+            $dateTime = "ຍັງ​ບໍ່​​ນັດ​";
+        elseif($now>$this->time_service){
+            $dateTime = "ກາຍ​ນັດ ". $date." ມື້ ";
+        }
+        else
+            $dateTime = $date." ມື້ ".$formatTime;
+
+        return $dateTime;
     }
 }

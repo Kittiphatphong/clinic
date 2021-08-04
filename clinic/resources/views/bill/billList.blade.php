@@ -1,6 +1,6 @@
 @extends('layouts.newApp')
 
-@section('title','Que')
+@section('title','ການ​ໃຊ້​ບໍ​ລິ​ການ')
 
 @section('content')
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
 
         <section class="content-header">
             <div class="container-fluid">
-                <h1><i class="nav-icon fas fa-clock"></i> ຈັດ​ການ​ຂໍ້​ມູນການ​ຈອງ​ຄິ​ວ</h1>
+                <h1><i class="nav-icon fas fa-hospital-user"></i> ຈັດ​ການ​ຂໍ້​ມູນການ​ໃຊ້​ບໍ​ລິ​ການ</h1>
             </div><!-- /.container-fluid -->
         </section>
         <!-- Main content -->
@@ -19,7 +19,7 @@
 
                     <div align="right">
 
-                        <a href="{{route('order-register.create')}}" class="btn btn-success "><i class="fa fa-plus"></i> ເພີ່ມ​ຂໍ້​ມູນການ​ຈອງ​ຄິ​ວ</a></a>
+                        <a href="{{route('order-register.create')}}" class="btn btn-success "><i class="fa fa-plus"></i> ເພີ່ມ​ຂໍ້​ມູນໃຊ້​ບໍ​ລິ​ການ</a></a>
 
                     </div>
                 </div>
@@ -30,42 +30,30 @@
                             <thead>
                             <tr>
 
-                              <th>ເວ​ລາ​ນັດພົບ</th>
-                              <th>ລູກ​ຄ້າ</th>
-                              <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
+                                <th>ເວ​ລາ​ນັດພົບ</th>
+                                <th>ລູກ​ຄ້າ</th>
+                                <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
                                 <th>ຜູ້​ນັດ​ລູກ​ຄ້າ</th>
                                 <th>ການ​ບໍ​ລິ​ການ</th>
-                                <th>ເວ​ລາ</th>
-                                <th>ສະ​ຖາ​ນະ</th>
+
                                 <th>ຄຳ​ສັ່ງ</th>
                                 <th>ເວ​ລາຈອງ</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order_registers as $item)
+                            @foreach($list_bills as $item)
                                 <tr>
-                                    <td>@if($item->time_service != null){{$item->time_service}} @else - @endif</td>
-                                  <td>{{$item->clients->firstname}} {{$item->clients->lastname}}</td>
-                                  <td>{{$item->clients->phone}}</td>
-                                    <td>@if($item->userR != null){{$item->userR->name}} @else - @endif</td>
+                                    <td>{{$item->time_service}}</td>
+                                    <td>{{$item->clients->firstname}} {{$item->clients->lastname}}</td>
+                                    <td>{{$item->clients->phone}}</td>
+                                    <td>{{$item->userR->name}}</td>
                                     <td>
                                         @foreach($item->register_services as $service)
                                             [{{$service->services->name}}]
                                         @endforeach
                                     </td>
-                                    <td>{{$item->differentTime()}}</td>
-                                    <td>
-                                        <span class="badge
-                                        @if($item->status_id == 2)
-                                        badge-success
-                                        @elseif($item->status_id == 1)
-                                        badge-warning
-                                        @elseif($item->status_id == 3)
-                                            badge-danger
-                                        @endif
-                                        ">{{$item->statuses->name}}</span>
-                                        </td>
+
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
                                             <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>
