@@ -146,7 +146,7 @@ class ClientApiController extends Controller
 
             return response()->json([
                 'status' => true ,
-                'data' => BookingResource::collection(Register::where('client_id',$client_id)->where('status_id','!=',4)->get())
+                'data' => BookingResource::collection(Register::where('client_id',$client_id)->get())
             ]);
         }catch (\Exception $e){
             return response()->json([

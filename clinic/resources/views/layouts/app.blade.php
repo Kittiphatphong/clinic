@@ -15,6 +15,15 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <style>
+            @font-face {
+                font-family: 'noto';
+                src: url("{{asset('assets/NotoSansLao-Bold.ttf')}}");
+            }
+            body {
+                font-family: noto;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
