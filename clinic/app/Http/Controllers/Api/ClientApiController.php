@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Client;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\ServiceResource;
 
 class ClientApiController extends Controller
 {
@@ -86,7 +87,7 @@ class ClientApiController extends Controller
 
             return response()->json([
                 'status' => true ,
-                'data' => Service::select('id','name','price')->get()
+                'data' => ServiceResource::collection(Service::select('id','name','price')->get())
             ]);
         }catch (\Exception $e){
             return response()->json([
