@@ -24,6 +24,7 @@ Route::post('client-login',[ClientApiController::class,'login']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::post('logout',[ClientApiController::class,'logout']);
+    Route::post('client-info',[ClientApiController::class,'clientInfo']);
     Route::post('booking',[ClientApiController::class,'booking']);
     Route::post('service-list',[ClientApiController::class,'serviceList']);
     Route::post('booking-list',[ClientApiController::class,'bookingList']);

@@ -15,6 +15,23 @@ use App\Http\Resources\BookingResource;
 
 class ClientApiController extends Controller
 {
+
+    public function clientInfo(Request $request){
+        try{
+            $client_id =  $request->user()->currentAccessToken()->tokenable->id;
+
+            return response()->json([
+               'status' => true,
+               'data' => Client::find($client_id),
+            ]);
+        }catch (\Exception $e){
+            return response()->json([
+                'status' => false,
+                'msg' => $e->getMessage()
+            ],422);
+        }
+
+    }
     public function login(Request $request){
         try {
             $validator=  Validator::make($request->all(), [
