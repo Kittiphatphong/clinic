@@ -19,7 +19,7 @@ var KTSelect2 = function() {
 
         // basic
         $('#kt_select2_4').select2({
-            placeholder: "Select a state",
+            placeholder: "ເລືອກ​ປະ​ເພດ​ຢາ",
             allowClear: true
         });
 

@@ -22,20 +22,36 @@
                         <a href="{{route('order-register.index')}}" class="btn btn-success "><i class="fa fa-list"></i> ລາຍ​ການ​ຈອງ​ຄິ​ວ</a></a>
 
                     </div>
+
                 </div>
                 <br>
+
                 <div class="card-body pt-0">
-                    <form method="post" action="{{isset($edit)?route('order-register.update',$edit->id):route('order-register.store')}}">
-                        @csrf
-                        @isset($edit)
-                            @method('PATCH')
-                        @endisset
+                    <form method="get" action="{{route('bill.create')}}">
+
+                        <div class="d-flex justify-content-around border p-2 mb-4 rounded bg-light">
+                           <p> ລູກ​ຄ້າ:​ {{$data_register->clients->firstname}} {{$data_register->clients->lastname}}</p>
+                            <p> ຈອງ​ຄິ​ວ:​ <b>{{$data_register->time_service}}</b></p>
+                        </div>
 
                         <div class="form-group">
                             <label>ຂໍ້​ມູນ​ການ​ບໍ​ລິ​ການ</label>
                             <select class="form-control select2" id="kt_select2_3" name="service_id[]" multiple="multiple" required>
                                 @foreach($services as $service)
-                                    <option value="{{$service->id}}" >{{$service->name}}</option>
+                                    <option value="{{$service->id}}"
+                                    @if(in_array($service->id,$service_register))
+                                        selected
+                                        @endif
+                                    >{{$service->name}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ປະ​ເພດ​ຍາ</label>
+                            <select class="form-control select2" id="kt_select2_4" name="medicine_id[]" multiple="multiple" required>
+                                @foreach($medicines as $medicine)
+                                    <option value="{{$medicine->id}}">{{$medicine->name}} {{$medicine->slug}}</option>
 
                                 @endforeach
                             </select>
