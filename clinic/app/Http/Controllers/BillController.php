@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use App\Models\Client;
 use App\Models\Medicine;
+use App\Models\Promotion;
 use App\Models\Register;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BillController extends Controller
 {
@@ -30,13 +33,16 @@ class BillController extends Controller
     {
         $request->validate([
            "service_id" => "required",
-           "medicine_id" => "required"
+           "medicine_id" => "required",
+            "register_id" => "required"
         ]);
 
         return view('bill.checkBill')
             ->with('order_registers','order_registers')
             ->with('service_id',$request->service_id)
-            ->with('medicine_id',$request->medicine_id);
+            ->with('medicine_id',$request->medicine_id)
+            ->with('register_id',$request->register_id)
+            ->with('promotions',Promotion::all());
     }
 
     /**
@@ -47,7 +53,46 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+//        dd($request->all());
+        $service_id = $request->service_id;
+        $service_amount = $request->amount_service;
+        $medicine_id = $request->medicine_id;
+        $medicine_amount = $request->amount_medicine;
+
+        $register = Register::find($request->register_id);
+        $register->status_id = 4;
+        $register->userB_id = Auth::user()->id;
+        if($request->percent > 0){
+            $register->discount = $request->percent;
+        }
+        $register->save();
+
+        //service
+        for($i=0;$i<count($service_id);$i++){
+            $bill = new Bill();
+            $service= Service::find($service_id[$i]);
+            $bill->name = $service->name;
+            $bill->price = $service->price;
+            $bill->amount = $service_amount[$i];
+            $bill->register_id = $register->id;
+            $bill->save();
+        }
+
+        //medicine
+        for($i=0;$i<count($medicine_id);$i++){
+            $bill = new Bill();
+            $medicine= Medicine::find($medicine_id[$i]);
+            $bill->name = $medicine->name;
+            $bill->price = $medicine->price;
+            $bill->amount = $medicine_amount[$i];
+            $bill->register_id = $register->id;
+            $bill->save();
+        }
+
+        return redirect()->route('bill.index')
+            ->with('success','ຊຳ​ລະ​ສຳ​ເລັດ');
+
+
     }
 
     /**

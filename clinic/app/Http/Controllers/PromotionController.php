@@ -14,7 +14,8 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        //
+      return view ('promotion.promotionList')
+          ->with('list_promotions',Promotion::all());
     }
 
     /**
@@ -24,7 +25,8 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        //
+        return view('promotion.promotionCreate')
+            ->with('list_promotions','list_promotions');
     }
 
     /**
@@ -35,7 +37,16 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'percent' =>  'required|numeric'
+        ]);
+        $promotion = new Promotion();
+        $promotion->name = $request->name;
+        $promotion->percent = $request->percent;
+        $promotion->save();
+        return redirect()->route('promotion.index')
+            ->with('success','ເພີ່​ມ​ຂໍ້​ມູນ​ສຳ​ເລັດ');
     }
 
     /**
@@ -55,9 +66,11 @@ class PromotionController extends Controller
      * @param  \App\Models\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promotion $promotion)
+    public function edit($id)
     {
-        //
+        return view('promotion.promotionCreate')
+            ->with('list_promotions','list_promotions')
+            ->with('edit',Promotion::find($id));
     }
 
     /**
@@ -67,9 +80,18 @@ class PromotionController extends Controller
      * @param  \App\Models\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Promotion $promotion)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'percent' =>  'required|numeric'
+        ]);
+        $promotion = Promotion::find($id);
+        $promotion->name = $request->name;
+        $promotion->percent = $request->percent;
+        $promotion->save();
+        return redirect()->route('promotion.index')
+            ->with('success','ແກ້​ໄຂ​ຂໍ້​ມູນ​ສຳ​ເລັດ');
     }
 
     /**
@@ -78,8 +100,9 @@ class PromotionController extends Controller
      * @param  \App\Models\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promotion $promotion)
+    public function destroy($id)
     {
-        //
+        Promotion::find($id)->delete();
+        return back()->with('ລຶບ​ຂໍ້​ມຸນ​ສຳ​ເລັດ');
     }
 }

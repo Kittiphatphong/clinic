@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Register;
 use App\Models\RegisterService;
 use App\Models\Service;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
@@ -75,9 +76,10 @@ class RegisterController extends Controller
      * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
      */
-    public function show(Register $register)
+    public function show($id)
     {
-        //
+
+
     }
 
     /**
@@ -86,9 +88,12 @@ class RegisterController extends Controller
      * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
      */
-    public function edit(Register $register)
+    public function edit($id)
     {
-        //
+        return view('que.queEdit')
+            ->with('order_registers','order_registers')
+            ->with('edit',Register::find($id))
+            ->with('status',Status::where('id','!=',4)->get());
     }
 
     /**
@@ -98,9 +103,18 @@ class RegisterController extends Controller
      * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Register $register)
+    public function update(Request $request, $id)
     {
-        //
+
+
+        $register = Register::find($id);
+        if($request->time_service){
+            $register->time_service = $request->time_service;
+        }
+
+        $register->status_id = $request->status_id;
+        $register->save();
+        return redirect()->route('order-register.index')->with('success','ແກ້​ໄຂ​ຂໍ້​ມູນ​ສຳ​ເລັດ');
     }
 
     /**

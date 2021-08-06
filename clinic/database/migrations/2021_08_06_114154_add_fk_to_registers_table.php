@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePromotionsTable extends Migration
+class AddFkToRegistersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('promotions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->float('percent');
-            $table->timestamps();
+        Schema::table('registers', function (Blueprint $table) {
+            $table->float('discount')->default(0);
+
         });
     }
 
@@ -28,6 +26,8 @@ class CreatePromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promotions');
+        Schema::table('registers', function (Blueprint $table) {
+
+        });
     }
 }

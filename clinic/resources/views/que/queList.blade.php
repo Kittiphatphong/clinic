@@ -79,7 +79,7 @@
                                         </div>
 
                                     </td>
-                                    <td>{{$item->updated_at}}</td>
+                                    <td>{{$item->created_at}}</td>
 
 
                                 </tr>

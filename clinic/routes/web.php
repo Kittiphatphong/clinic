@@ -7,6 +7,7 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\PromotionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('service',ServiceController::class);
     Route::resource('order-register',RegisterController::class);
     Route::resource('bill',BillController::class);
+    Route::resource('promotion',PromotionController::class);
 
 });
 

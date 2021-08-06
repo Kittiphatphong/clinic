@@ -28,7 +28,7 @@
 
                 <div class="card-body pt-0">
                     <form method="get" action="{{route('bill.create')}}">
-
+                        <input type="hidden" name="register_id" value="{{$data_register->id}}">
                         <div class="d-flex justify-content-around border p-2 mb-4 rounded bg-light">
                            <p> ລູກ​ຄ້າ:​ {{$data_register->clients->firstname}} {{$data_register->clients->lastname}}</p>
                             <p> ຈອງ​ຄິ​ວ:​ <b>{{$data_register->time_service}}</b></p>

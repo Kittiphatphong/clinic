@@ -30,30 +30,39 @@
                             <thead>
                             <tr>
 
-                                <th>ເວ​ລາ​ນັດພົບ</th>
+                                <th>ເວ​ລາຊຳ​ລະ</th>
                                 <th>ລູກ​ຄ້າ</th>
                                 <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
                                 <th>ຜູ້​ນັດ​ລູກ​ຄ້າ</th>
+                                <th>ຜູ້​ຮັບຊຳ​ລະ</th>
                                 <th>ການ​ບໍ​ລິ​ການ</th>
-
+                                <th>ຈຳນວນ​ເງີນ</th>
                                 <th>ຄຳ​ສັ່ງ</th>
-                                <th>ເວ​ລາຈອງ</th>
+
+                                <th>ເວ​ລາ​ນັດພົບ</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($list_bills as $item)
                                 <tr>
-                                    <td>{{$item->time_service}}</td>
+                                    <td>{{$item->updated_at}}</td>
                                     <td>{{$item->clients->firstname}} {{$item->clients->lastname}}</td>
                                     <td>{{$item->clients->phone}}</td>
                                     <td>{{$item->userR->name}}</td>
+                                    <td>{{$item->userB->name}}</td>
                                     <td>
-                                        @foreach($item->register_services as $service)
-                                            [{{$service->services->name}}]
+                                        @foreach($item->bills as $service)
+                                            [{{$service->name}}]
                                         @endforeach
                                     </td>
-
+                                    <td>
+                                        {{number_format ($item->sumPrice())}} ກີບ
+                                        @if($item->discount >0)
+                                           <span class="text-danger"> (-{{$item->discount}} %)</span>
+                                            <strike class="text-secondary">{{number_format ($item->priceUnDiscount())}}ກີບ</strike>
+                                            @endif
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
                                             <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>
@@ -66,7 +75,8 @@
                                         </div>
 
                                     </td>
-                                    <td>{{$item->updated_at}}</td>
+                                    <td>{{$item->time_service}}</td>
+
 
 
                                 </tr>

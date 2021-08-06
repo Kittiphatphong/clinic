@@ -31,18 +31,39 @@ class Register extends Model
     }
 
     public function bills(){
-        return $this->hasMany(Bill::class,'bill_id');
+        return $this->hasMany(Bill::class,'register_id');
     }
+
+    public function sumPrice(){
+        $bills =  Bill::where('register_id',$this->id)->get();
+        $sum = 0;
+        foreach ($bills as $bill){
+            $sum+=  $bill->amount*$bill->price ;
+        }
+        if($this->discount>0){
+            $sum = $sum - (($this->discount*$sum)/100);
+        }
+        return  $sum;
+    }
+    public function priceUnDiscount(){
+        $bills =  Bill::where('register_id',$this->id)->get();
+        $sum = 0;
+        foreach ($bills as $bill){
+            $sum+=  $bill->amount*$bill->price ;
+        }
+        return  $sum;
+    }
+
 
     public function differentTime(){
         $now = Carbon::now('Asia/Vientiane');
         $time = $now->diffInSeconds($this->time_service);
         $date = $now->diffInDays($this->time_service);
-        $formatTime = gmdate('H:i:s',$time);
-        if($date == 0)
+        $formatTime = gmdate('h ຊົວໂມງ i ນາ​ທີ',$time);
+        if($this->time_service== null)
             $dateTime = "ຍັງ​ບໍ່​​ນັດ​";
         elseif($now>$this->time_service){
-            $dateTime = "ກາຍ​ນັດ ". $date." ມື້ ";
+            $dateTime = "ກາຍ​ນັດ ". $date." ມື້ " .$formatTime;
         }
         else
             $dateTime = $date." ມື້ ".$formatTime;

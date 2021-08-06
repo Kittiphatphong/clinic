@@ -139,6 +139,12 @@
                         </a>
                     </li>
                     <li class="nav-item " >
+                        <a href="{{route('promotion.index')}}" class="nav-link  @isset($list_promotions) active @endisset">
+                            <i class="nav-icon fab fa-product-hunt"></i>
+                            <p>ໂປ​ໂມ​ຊັ້ນ</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " >
                         <a href="{{route('user.index')}}" class="nav-link  @isset($list_users) active @endisset">
                             <i class="nav-icon fas fa-user"></i>
                             <p>ຜູ້​ໃຊ້ </p>
