@@ -27,6 +27,7 @@ class BookingResource extends JsonResource
             'time_service' => $this->time_service,
             'service_list' => Service::find($services)->pluck('name'),
             'status' => $this->statuses->name,
+            'status_id' => $this->status_id,
             'user_receive' => $user,
             'time_booking' => $this->created_at,
             'time_period' => $this->differentTime()
