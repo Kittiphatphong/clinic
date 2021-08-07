@@ -76,8 +76,8 @@
                                     <td>
                                         <div class="d-flex justify-content-start m-0">
 {{--                                            <a href="{{route('order-register.edit',$item->id)}}" class="btn btn-link" ><i class="far fa-edit"></i></a>--}}
-                                            <a href="{{route('bill.show',$item->id)}}" class="btn btn-link" ><i class="fa fa-print"></i></a>
-                                            <form action="{{route('bill.destroy',$item->id)}}" method="post" class="delete{{$item->id}}">
+                                            <a href="{{route('check-bill.show',$item->id)}}" class="btn btn-link" ><i class="fa fa-print"></i></a>
+                                            <form action="{{route('check-bill.destroy',$item->id)}}" method="post" class="delete{{$item->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class=" btn btn-link delete_button" data-id="{{$item->id}}"><i class="fas fa-trash"></i></button>

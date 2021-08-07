@@ -27,7 +27,7 @@
                 <br>
 
                 <div class="card-body pt-0">
-                    <form method="post" action="{{route('check-bill.create')}}">
+                    <form method="get" action="{{route('check-bill.index')}}">
 
                         <div class="form-group">
                             <label>ລູກ​ຄ້າ</label>

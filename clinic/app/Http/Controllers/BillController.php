@@ -34,7 +34,7 @@ class BillController extends Controller
         $request->validate([
            "service_id" => "required",
            "medicine_id" => "required",
-            "register_id" => "required"
+           "register_id" => "required"
         ]);
 
         return view('bill.checkBill')

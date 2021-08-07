@@ -30,7 +30,18 @@
                     <form method="post" action="{{route('check-bill.store')}}">
 
                         @csrf
+                         <input type="hidden" value="{{$client_id->id}}" name="client_id">
+                        <input type="hidden" value="{{$description}}" name="description">
 
+                       <div class="border mb-3 text-center">
+                           {{$client_id->firstname}} {{$client_id->lastname}} ({{$client_id->gender}})
+                           <div class="d-flex justify-content-between mt-2 px-2">
+                               <b>ເບີ​ໂທ: {{$client_id->phone}}</b>
+                               <p>ທີ​ຢູ່: {{$client_id->address}}</p>
+                               <b>ວັນ​ເກີດ: {{$client_id->birthday}}</b>
+
+                           </div>
+                       </div>
                         <div class="form-group">
                             <label>ຊຳ​ລະ​ການ​ບໍ​ລິ​ການ</label>
                             <div class="border">
