@@ -121,7 +121,8 @@ class CheckBillController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('bill.bill')
+            ->with('service',Register::find($id));
     }
 
     /**
@@ -160,8 +161,8 @@ class CheckBillController extends Controller
             $register->status_id = 2;
             $register->discount = 0 ;
             $register->save();
-dd($register->bills->pluck('id'));
-            DB::table('bills')->whereIn('register_id',$register->bills->pluck('id'))->delete();
+
+            DB::table('bills')->where('register_id',$register->id)->delete();
             return redirect()->route('order-register.index')
                 ->with('success','ລຶບ​ຂໍ້​ມູນ​ສຳ​ເລັດ​');
 

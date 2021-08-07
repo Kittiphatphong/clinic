@@ -45,6 +45,8 @@ class Register extends Model
         }
         return  $sum;
     }
+
+
     public function priceUnDiscount(){
         $bills =  Bill::where('register_id',$this->id)->get();
         $sum = 0;

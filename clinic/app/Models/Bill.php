@@ -12,4 +12,8 @@ class Bill extends Model
     public function registers(){
         return $this->belongsTo(Register::class,'register_id');
     }
+
+    public function totalPrice(){
+     return number_format($this->price*$this->amount) ;
+    }
 }
