@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BillClientResource;
 use App\Models\Register;
 use App\Models\RegisterService;
 use App\Models\Service;
@@ -182,5 +183,23 @@ class ClientApiController extends Controller
                 'msg' => $e->getMessage()
             ],422);
         }
+    }
+
+    public function billListClient(Request $request){
+        try{
+            $client_id =  $request->user()->currentAccessToken()->tokenable->id;
+            $booking = Register::where('client_id',$client_id)->where('status_id',4)->get();
+            return response()->json([
+                'status' => true,
+                 'data' => BillClientResource::collection($booking)
+            ]);
+
+        }catch (\Exception $e){
+            return response()->json([
+                'status' => false,
+                'msg' => $e->getMessage()
+            ],422);
+        }
+
     }
 }

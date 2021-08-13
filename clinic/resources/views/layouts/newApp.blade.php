@@ -124,6 +124,9 @@
                         <a href="{{route('order-register.index')}}" class="nav-link  @isset($order_registers) active @endisset">
                             <i class="nav-icon fas fa-clock"></i>
                             <p>ຈອງ​ຄິ​ວ</p>
+                            @if(\App\Models\Register::where('status_id',1)->count()>0)
+                            <span class="badge badge-warning float-right ">{{\App\Models\Register::where('status_id',1)->count()}}</span>
+                            @endif
                         </a>
                     </li>
                     <li class="nav-item " >
