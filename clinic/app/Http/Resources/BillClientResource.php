@@ -15,19 +15,22 @@ class BillClientResource extends JsonResource
      */
     public function toArray($request)
     {
-        if($this->userR != null){
-            $user = $this->userR->name;
-        }else{
-            $user = null;
-        }
-        $services = $this->register_services->pluck('service_id');
+       if($this->booking_status == true){
+           $booking_status = 'ຈອງ​ຄິ​ວ';
+       }else{
+           $booking_status = 'ໜ້າ​ຮ້າ​ນ';
+       }
+
+
         return [
-            'id' => $this->id,
-            'time_service' => $this->updated_at,
+             'id' => $this->id,
+             'time_service' => $this->updated_at,
              'pay_price' => $this->sumPrice(),
              'percent_discount' => $this->discount,
              'price_UnDiscount' => $this->priceUnDiscount(),
-             'bill_detail' => BillDetailResource::collection($this->bills)
+            'type_pay' => $booking_status,
+             'bill_detail' => BillDetailResource::collection($this->bills),
+
 
         ];
     }

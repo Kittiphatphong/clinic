@@ -188,7 +188,7 @@ class ClientApiController extends Controller
     public function billListClient(Request $request){
         try{
             $client_id =  $request->user()->currentAccessToken()->tokenable->id;
-            $booking = Register::where('client_id',$client_id)->where('status_id',4)->get();
+            $booking = Register::where('client_id',$client_id)->where('status_id',4)->orderBy('updated_at','desc')->get();
             return response()->json([
                 'status' => true,
                  'data' => BillClientResource::collection($booking)
