@@ -28,7 +28,7 @@
 
                         </div>
                         <div class="col-md-12 text-center">
-                            ສະ​ບາຍ​ດີ
+                            ສະ​ບາຍ​ດີ, ທ່າ​ນ {{Auth::user()->name}}
                         </div>
                         <div class="col-md-1" >
 
