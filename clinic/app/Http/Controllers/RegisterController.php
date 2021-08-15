@@ -111,8 +111,9 @@ class RegisterController extends Controller
         if($request->time_service){
             $register->time_service = $request->time_service;
         }
-
+        
         $register->status_id = $request->status_id;
+        $register->userR_id = Auth::user()->id;
         $register->save();
         return redirect()->route('order-register.index')->with('success','ແກ້​ໄຂ​ຂໍ້​ມູນ​ສຳ​ເລັດ');
     }
