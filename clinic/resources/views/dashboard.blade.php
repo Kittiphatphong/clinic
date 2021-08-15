@@ -31,7 +31,7 @@
                             ສະ​ບາຍ​ດີ, ທ່າ​ນ {{Auth::user()->name}}
                         </div>
                         <div class="col-md-1" >
-
+<p></p>
                         </div>
                     </div>
                 </div>
