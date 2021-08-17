@@ -16,7 +16,10 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard')
+            ->with('dashboard','dashboard
+
+            ');
     })->name('dashboard');
 
     Route::resource('user',UserController::class);

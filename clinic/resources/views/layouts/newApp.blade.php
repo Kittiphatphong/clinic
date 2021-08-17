@@ -111,6 +111,12 @@
                 <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    <li class="nav-item " >
+                        <a href="#" class="nav-link  @isset($dashboard) active @endisset">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>ໜ້າ​ຫຼັກ</p>
+                        </a>
+                    </li>
                     <li class="nav-header">ເມ​ນູ</li>
 
                     <li class="nav-item " >
@@ -157,6 +163,13 @@
                         <a href="{{route('client.index')}}" class="nav-link  @isset($list_clients) active @endisset">
                             <i class="nav-icon fas fa-address-card"></i>
                           <p>ລູກ​ຄ້າ</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item " >
+                        <a href="" class="nav-link  @isset($list_clients) active @endisset">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>ລາຍ​ງານ</p>
                         </a>
                     </li>
 
