@@ -159,8 +159,27 @@
                           <p>ລູກ​ຄ້າ</p>
                         </a>
                     </li>
+            
 
-
+                    <li class="nav-header">ລາຍ​ງານ</li>
+                    <li class="nav-item " >
+                        <a href="{{route('report.booking')}}" class="nav-link  @isset($list_clients) active @endisset">
+                            <i class="nav-icon fas fa-circle"></i>
+                          <p>ການ​​ຈອງ</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " >
+                        <a href="" class="nav-link  @isset($list_clients) active @endisset">
+                            <i class="nav-icon fas fa-circle"></i>
+                          <p>ລາຍ​ຮັບ</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " >
+                        <a href="" class="nav-link  @isset($list_clients) active @endisset">
+                            <i class="nav-icon fas fa-circle"></i>
+                          <p>ລູກ​ຄ້າ​ທີ​ມາ​ໃຊ້​ບໍ​ລິ​ລານ</p>
+                        </a>
+                    </li>
 
                     <div class="user-panel mt-2 pb-3 mb-2 d-flex">
 
@@ -179,7 +198,7 @@
                     </li>
 
 
-
+                   
 
                 </ul>
             </nav>

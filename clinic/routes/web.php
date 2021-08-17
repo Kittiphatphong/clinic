@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CheckBillController;
+use App\Http\Controllers\ReportController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,6 +28,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('bill',BillController::class);
     Route::resource('promotion',PromotionController::class);
     Route::resource('check-bill',CheckBillController::class);
+
+    Route::get('report-booking',[ReportController::class,'reportBooking'])->name('report.booking');
 
 });
 
