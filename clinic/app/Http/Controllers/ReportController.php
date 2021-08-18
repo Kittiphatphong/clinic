@@ -39,7 +39,7 @@ class ReportController extends Controller
     }
 
     public function reportService(Request $request){
-        
+
         if($request->start && $request->end){
             $end = Carbon::create($request->end)->addDays(1);
             // $income = Register::where('status_id',4)->whereBetween('updated_at', [$request->start,$end])->get();
