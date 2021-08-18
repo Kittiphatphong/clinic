@@ -7,7 +7,6 @@ function filterColumn ( i ) {
 }
 
 
-
 var KTDatatablesDataSourceHtml = function() {
 
 
@@ -39,8 +38,10 @@ var KTDatatablesDataSourceHtml = function() {
                 .draw();
 
         } );
+
         // begin first table
         table.DataTable({
+
             class: 'border',
             dom:'<"d-flex justify-content-between border m-0 p-1 rounded" flB>t<"d-flex justify-content-between" ip>',
             "pagingType": "full_numbers",
@@ -58,21 +59,32 @@ var KTDatatablesDataSourceHtml = function() {
                 "info":           "ສະ​ແດງ _START_ ຫາ _END_ ຈາກ ທັງ​ໝົດ _TOTAL_​",
                 "infoFiltered":   "(ທັງ​ໝົດ _MAX_ ລາຍ​ການ)",
             },
-        
+
             buttons: [
-                'pdf',
+
+                {
+                    className:'btn btn-outline-link',
+
+                    extend: 'pdf',
+                    customize: function(doc){
+                        doc.defaultStyle.font = ' Nikosh'
+                    }
+
+
+                },
                 {     className:'btn btn-outline-link',
                     text:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">\n' +
                         '  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>\n' +
                         '  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>\n' +
                         '</svg> ',
                     extend: 'excel',
-                   
+
 
 
                 },
 
             ],
+
             responsive: true,
 
         });

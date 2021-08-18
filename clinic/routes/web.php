@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('check-bill',CheckBillController::class);
 
     Route::get('report-booking',[ReportController::class,'reportBooking'])->name('report.booking');
+    Route::get('report-income',[ReportController::class,'reportIncome'])->name('report.income');
 
 });
 

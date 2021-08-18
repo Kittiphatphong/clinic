@@ -159,17 +159,20 @@
                           <p>ລູກ​ຄ້າ</p>
                         </a>
                     </li>
-            
+
 
                     <li class="nav-header">ລາຍ​ງານ</li>
                     <li class="nav-item " >
-                        <a href="{{route('report.booking')}}" class="nav-link  @isset($list_clients) active @endisset">
+                        <a href="{{route('report.booking')}}" class="nav-link  @isset($booking) active @endisset">
                             <i class="nav-icon fas fa-circle"></i>
                           <p>ການ​​ຈອງ</p>
+                            @if(\App\Models\Register::where('status_id',2)->whereDate('time_service', \Carbon\Carbon::today())->count()>0)
+                                <span class="badge badge-success float-right ">{{\App\Models\Register::where('status_id',2)->whereDate('time_service', \Carbon\Carbon::today())->count()}}</span>
+                            @endif
                         </a>
                     </li>
                     <li class="nav-item " >
-                        <a href="" class="nav-link  @isset($list_clients) active @endisset">
+                        <a href="{{route('report.income')}}" class="nav-link  @isset($income) active @endisset">
                             <i class="nav-icon fas fa-circle"></i>
                           <p>ລາຍ​ຮັບ</p>
                         </a>
@@ -177,7 +180,7 @@
                     <li class="nav-item " >
                         <a href="" class="nav-link  @isset($list_clients) active @endisset">
                             <i class="nav-icon fas fa-circle"></i>
-                          <p>ລູກ​ຄ້າ​ທີ​ມາ​ໃຊ້​ບໍ​ລິ​ລານ</p>
+                          <p>ລູກ​ຄ້າ​ທີ​ມາ​ໃຊ້​ບໍ​ລິ​ການ</p>
                         </a>
                     </li>
 
@@ -198,7 +201,7 @@
                     </li>
 
 
-                   
+
 
                 </ul>
             </nav>
