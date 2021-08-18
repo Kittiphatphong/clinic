@@ -30,10 +30,10 @@
 
                                 <th>ໄອ​ດີ</th>
                                 <th>ຊື່ ແລະ​ນາມ​ສະ​ກຸນ</th>
-                               
+
                                 <th>ເພດ</th>
                                 <th>ເບີ​ໂທ</th>
-                             
+
                                 <th>ຈຳ​ນວນ​ຄັ້ງ</th>
                                 <th>ວັນ​ເກີດ</th>
 
@@ -44,10 +44,10 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->firstname}} {{$item->lastname}}</td>
-                                  
+
                                     <th>{{$item->gender}}</th>
                                     <th>{{$item->phone}}</th>
-                                     <th></th>
+                                     <td>{{$item->registers->where('status_id',4)->count()}}</td>
                                     <td>{{$item->birthday}}</td>
 
 
