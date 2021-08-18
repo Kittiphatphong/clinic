@@ -29,7 +29,7 @@
                         <table class="table table-bordered table-hover table-checkable col-12" id="kt_datatable" style="margin-top: 13px !important">
                             <thead>
                             <tr>
-
+                              <th>​ໄອ​ດີ</th>
                               <th>ເວ​ລາ​ນັດພົບ</th>
                               <th>ລູກ​ຄ້າ</th>
                               <th>ເບີ​ໂທ​ລູກ​ຄ້າ</th>
@@ -45,6 +45,7 @@
                             <tbody>
                             @foreach($order_registers as $item)
                                 <tr>
+                                    <td>{{$item->id}}</td>
                                     <td>@if($item->time_service != null){{$item->time_service}} @else - @endif</td>
                                   <td>{{$item->clients->firstname}} {{$item->clients->lastname}}</td>
                                   <td>{{$item->clients->phone}}</td>
