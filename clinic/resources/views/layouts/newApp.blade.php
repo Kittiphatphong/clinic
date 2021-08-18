@@ -178,7 +178,7 @@
                         </a>
                     </li>
                     <li class="nav-item " >
-                        <a href="" class="nav-link  @isset($list_clients) active @endisset">
+                        <a href="{{route('report.service')}}" class="nav-link  @isset($client_services) active @endisset">
                             <i class="nav-icon fas fa-circle"></i>
                           <p>ລູກ​ຄ້າ​ທີ​ມາ​ໃຊ້​ບໍ​ລິ​ການ</p>
                         </a>

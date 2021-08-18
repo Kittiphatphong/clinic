@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('report-booking',[ReportController::class,'reportBooking'])->name('report.booking');
     Route::get('report-income',[ReportController::class,'reportIncome'])->name('report.income');
+    Route::get('report-service',[ReportController::class,'reportService'])->name('report.service');
 
 });
 

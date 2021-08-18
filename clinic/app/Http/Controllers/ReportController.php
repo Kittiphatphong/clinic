@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Register;
 use Carbon\Carbon;
+use App\Models\Client;
 class ReportController extends Controller
 {
     public function reportBooking(Request $request){
@@ -37,7 +38,21 @@ class ReportController extends Controller
             ->with('sum',$sum);
     }
 
-    public function reportService(){
+    public function reportService(Request $request){
+        
+        if($request->start && $request->end){
+            $end = Carbon::create($request->end)->addDays(1);
+            // $income = Register::where('status_id',4)->whereBetween('updated_at', [$request->start,$end])->get();
 
+        }else{
+            // $income = Register::where('status_id',4)->whereDate('updated_at', Carbon::today())->get();
+            $client = Client::all();
+        }
+        // $sum = 0;
+        // foreach ($income as $item){
+        //     $sum+=$item->sumPrice();
+        // }
+        return view('report.service')
+            ->with('client_services',$client);
     }
 }
